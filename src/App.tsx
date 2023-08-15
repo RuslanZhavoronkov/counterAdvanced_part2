@@ -14,6 +14,7 @@ function App() {
   let [maxValue, setMaxValue] = useState<number>(0)
   let [startValue, setStartValue] = useState<number>(0)
   let [message, setMessage] = useState<string>('')
+  let [setting, setSetting] = useState<boolean>(false)
 
 
   //get from localStorage and write to state
@@ -40,23 +41,31 @@ function App() {
 
   }, [])
 
-  
-   
+
+
   //writing values in localStorage
-  useEffect(()=> {
+  useEffect(() => {
     localStorage.setItem('counter', JSON.stringify(counter))
     localStorage.setItem('startValue', JSON.stringify(startValue))
     localStorage.setItem('maxValue', JSON.stringify(maxValue))
 
-  },[counter, startValue, maxValue])
+  }, [counter, startValue, maxValue])
 
 
+  // +counter
   const increaseCounter = () => {
     if (counter < maxValue) {
       setCounter(counter + 1);
     }
   }
 
+ 
+  // show settings
+  const getSetting = () => {
+    setSetting(!setting);
+  }
+
+// counter reset
   const resetCounter = () => {
     setCounter(startValue)
   }
@@ -85,6 +94,7 @@ function App() {
     if (startValue < maxValue && startValue >= 0 && maxValue > 0) {
       setMessage('')
       setCounter(startValue)
+      getSetting()
     } else {
       setMessage('Incorrect value!')
     }
@@ -94,24 +104,28 @@ function App() {
 
   return (
     <div>
-
-      <MainNumberCounter
-        message={message}
-        counter={counter}
-        startValue={startValue}
-        maxValue={maxValue}
-        increaseCounter={increaseCounter}
-        resetCounter={resetCounter} />
-
-      <MainCounterCustomizer
-        counter={counter}
-        startValue={startValue}
-        maxValue={maxValue}
-        changeStartValue={changeStartValue}
-        changeMaxValue={changeMaxValue}
-        settingMinimumValue={settingMinimumValue}
-        message={message}
-      />
+      {
+        !setting ?
+          <MainNumberCounter
+            message={message}
+            counter={counter}
+            startValue={startValue}
+            maxValue={maxValue}
+            increaseCounter={increaseCounter}
+            resetCounter={resetCounter}
+            getSetting={getSetting}
+          />
+          :
+          <MainCounterCustomizer
+            counter={counter}
+            startValue={startValue}
+            maxValue={maxValue}
+            changeStartValue={changeStartValue}
+            changeMaxValue={changeMaxValue}
+            settingMinimumValue={settingMinimumValue}
+            message={message}
+          />
+      }
 
     </div>
   );

@@ -12,10 +12,10 @@ export const Button: React.FC<PropsButtonType> = (props) => {
     const onClickHandler = () => {
         props.callBack()
     }
-    
+    const buttonClassName = props.color === 'aquamarine' ? `${s.button} ${s.active}` : `${s.button} ${s.disable}`
     return (
         
-            <button className={props.color === 'aquamarine' ? `${s.button} ${s.active}` : `${s.button} ${s.disable}`} onClick={onClickHandler}>{props.name}</button>
+            <button className={buttonClassName} onClick={onClickHandler}>{props.name}</button>
         
 
 

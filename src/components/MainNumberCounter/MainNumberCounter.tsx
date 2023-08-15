@@ -9,6 +9,7 @@ type PropsMainNumberCounterType = {
   maxValue: number
   increaseCounter: () => void
   resetCounter: () => void
+  getSetting: () => void
 }
 
 
@@ -25,6 +26,7 @@ export const MainNumberCounter: React.FC<PropsMainNumberCounterType> = (props) =
         {/* <Button name={'INC'} callBack={props.increaseCounter} color={props.counter < props.maxValue ? 'aquamarine' : 'grey'} /> */}
         <Button name={'INC'} callBack={props.increaseCounter} color={buttonIncColor} />
         <Button name={'RESET'} callBack={props.resetCounter} color={props.message ? 'grey' : 'aquamarine'} />
+        <Button name={'SET'} callBack={props.getSetting} color={'aquamarine'} />
       </div>
 
     </div>
