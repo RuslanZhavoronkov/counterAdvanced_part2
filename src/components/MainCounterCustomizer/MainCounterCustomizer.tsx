@@ -1,6 +1,8 @@
 import { Button } from "../Button/Button"
 import { Input } from "../Input/Input"
 import s from './MainCounterCustomizer.module.css'
+
+
 type PropsMainCounterCustomizerType = {
     counter: number
     startValue: number
@@ -25,10 +27,10 @@ export const MainCounterCustomizer: React.FC<PropsMainCounterCustomizerType> = (
         <div className={s.inputArea}>
             <div className={s.inputBox}>
                 <div className={s.input}>
-                    <Input name={'max value'} callBack={props.changeMaxValue} color={inputMaxValueColor} />
+                    <Input value = {props.maxValue} name={'max value'} callBack={props.changeMaxValue} color={inputMaxValueColor} />
                 </div>
                 <div className={s.input}>
-                    <Input name={'min value'} callBack={props.changeStartValue} color={inputMinValueColor} />
+                    <Input value = {props.startValue} name={'min value'} callBack={props.changeStartValue} color={inputMinValueColor} />
                 </div>
             </div>
             <div className={s.buttonArea}>
